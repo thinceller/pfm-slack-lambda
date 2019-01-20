@@ -7,12 +7,6 @@ const pfmSigninUrl = 'https://moneyforward.com/users/sign_in';
 const email = process.env.EMAIL
 const password = process.env.PASSWORD
 
-/**
- * handler
- *
- * @param {*} event
- * @param {*} context
- */
 exports.handler = async (event, context) => {
   const browser = await puppeteer.launch({
     headless: true,
@@ -41,11 +35,7 @@ exports.handler = async (event, context) => {
   console.log(title);
 
   // Slack通知送信
-  const payload = {
-    text: title,
-    username: 'MF デイリー通知bot',
-  }
-  await client.postMessage(payload);
+  await client.postMessage(title);
   await delay(1000);
 
   // 終了処理
