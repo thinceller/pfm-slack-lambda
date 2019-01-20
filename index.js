@@ -1,6 +1,8 @@
 const delay = require('delay');
 const puppeteer = require('puppeteer');
 
+const client = require('./slack');
+
 const pfmSigninUrl = 'https://moneyforward.com/users/sign_in';
 const email = process.env.EMAIL
 const password = process.env.PASSWORD
@@ -31,11 +33,19 @@ exports.handler = async (event, context) => {
     page.click('#login-btn-sumit')
   ])
 
+  // 情報取得
   const title = await page.evaluate(() => {
     return document.querySelector('title').textContent
   })
   await delay(1000);
   console.log(title);
+
+  // Slack通知送信
+  const payload = {
+    text: title,
+    username: 'MF デイリー通知bot',
+  }
+  await client.postMessage(payload);
   await delay(1000);
 
   // 終了処理

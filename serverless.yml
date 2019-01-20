@@ -13,7 +13,7 @@ functions:
   test:
     handler: index.handler
     timeout: 60
-    memoriSize: 2048
+    memorySize: 2048
     layers:
       - {Ref: ChromeLambdaLayer}
     environment:
