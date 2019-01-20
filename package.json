@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "@serverless-chrome/lambda": "^1.0.0-55",
+    "@slack/client": "^4.8.0",
     "delay": "^4.1.0",
     "puppeteer": "^1.11.0"
   },
