@@ -1,0 +1,30 @@
+service: pfm-slack-lambda
+provider:
+  name: aws
+  runtime: nodejs8.10
+  stage: dev
+  region: ap-northeast-1
+
+package:
+  exclude:
+    - node_modules/@serverless-chrome/lambda/dist/**
+
+functions:
+  test:
+    handler: index.handler
+    timeout: 60
+    memoriSize: 2048
+    layers:
+      - {Ref: ChromeLambdaLayer}
+    environment:
+      EMAIL: ${env:EMAIL}
+      PASSWORD: ${env:PASSWORD}
+
+layers:
+  chrome:
+    path: node_modules/@serverless-chrome/lambda/dist
+    name: serverless-chrome
+    description: chrome-headless binary
+
+plugins:
+  - serverless-dotenv-plugin
