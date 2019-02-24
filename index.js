@@ -5,9 +5,9 @@ const puppeteer = require('puppeteer');
 const client = require('./slack');
 
 const pfmSigninUrl = 'https://moneyforward.com/users/sign_in';
-const email = process.env.EMAIL
-const password = process.env.PASSWORD
-const name = process.env.YOUR_NAME
+const email = process.env.EMAIL;
+const password = process.env.PASSWORD;
+const name = process.env.YOUR_NAME;
 
 exports.handler = async (event, context) => {
   const browser = await puppeteer.launch({
