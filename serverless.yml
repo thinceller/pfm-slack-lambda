@@ -19,6 +19,8 @@ functions:
     environment:
       EMAIL: ${env:EMAIL}
       PASSWORD: ${env:PASSWORD}
+    events:
+      - schedule: cron(0 0 ? * 1 *)
 
 layers:
   chrome:
